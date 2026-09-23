@@ -1,0 +1,6 @@
+{
+  "name": "DocToImage",
+  "description": "Render PowerPoint (PPT/PPTX), Word (DOCX/DOC), Excel (XLSX), RTF, Markdown and HTML documents directly to high-resolution images without PDF conversion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
