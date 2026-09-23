@@ -19,8 +19,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Set up Gradle
+        # this project is missing gradlew (the wrapper script + jar), which
+        # AI Studio's export sometimes drops. Rather than regenerate it,
+        # this action installs Gradle straight onto the runner instead.
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
 
       - name: Generate a debug keystore
         # your project's .gitignore excludes debug.keystore, so it isn't in the
@@ -38,7 +43,7 @@ jobs:
         # If the app calls the Gemini API at runtime, add GEMINI_API_KEY as a
         # repo secret (Settings > Secrets and variables > Actions), then
         # uncomment the two lines below.
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
         # env:
         #   GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
